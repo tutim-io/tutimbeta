@@ -5,6 +5,7 @@
   "author": "Tutim <eylon@tutim.io>",
   "homepage": "https://tutim.io",
   "license": "MIT",
+  "repository": "https://github.com/tutim-io/tutimbeta",
   "type": "module",
   "module": "index.ts",
   "types": "index.d.ts",

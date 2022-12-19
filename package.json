@@ -17,7 +17,7 @@
     "pkg:patch": "yarn workspace @tutimbeta/types version --patch --no-git-tag-version && yarn workspace @tutimbeta/headless version --patch --no-git-tag-version && yarn workspace @tutimbeta/fields version --patch --no-git-tag-version && yarn version --patch  --no-git-tag-version",
     "pkg:tag": "git add . && git commit -m v${npm_package_version} && git push && git tag v${npm_package_version} && git push --tags",
     "pkg:deploy": "yarn workspace @tutimbeta/types pkg && yarn workspace @tutimbeta/headless pkg && yarn workspace @tutimbeta/fields pkg",
-    "pkg": "yarn pkg:patch && yarn pkg:tag"
+    "pkg": "yarn pkg:patch && yarn pkg:tag && yarn pkg:deploy"
   },
   "keywords": [
     "form",
