@@ -262,14 +262,14 @@ Tutim provides all forms solutions. Through code or drag & drop interface.
 **😊 Portal**
 
 - [x] Simple form builder
-- [ ] DnD form builder (coming soon)
-- [ ] Templates library (coming soon)
+- [ ] Drag & Drop form builder 
+- [ ] Templates library
 - [ ] Conditional branching
 
-**☁️ Cloud ([request early access](https://discord.tutim.io))**
+**☁️ Cloud ([closed beta, request early access](https://discord.tutim.io))**
 
-- [x] Manage and serve schemas (closed-beta, public coming soon)
-- [x] Hosted forms (closed-beta, public coming soon)
+- [x] Manage and serve schemas
+- [x] Hosted forms
 - [ ] Backend support
 - [ ] 3rd Party integrations
 
