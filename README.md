@@ -266,7 +266,7 @@ Tutim provides all forms solutions. Through code or drag & drop interface.
 - [ ] Templates library (coming soon)
 - [ ] Conditional branching
 
-**☁️ Cloud**
+**☁️ Cloud ([request early access](https://discord.tutim.io))**
 
 - [x] Manage and serve schemas (closed-beta, public coming soon)
 - [x] Hosted forms (closed-beta, public coming soon)
