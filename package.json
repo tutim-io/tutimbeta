@@ -1,0 +1,31 @@
+{
+  "name": "@tutimbeta/root",
+  "version": "0.0.0",
+  "description": "form infrastructure for web applications",
+  "author": "Tutim <eylon@tutim.io>",
+  "homepage": "https://tutim.io",
+  "license": "MIT",
+  "repository": "https://github.com/tutim-io/tutimbeta",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "yarn workspace @tutimbeta/example dev",
+    "build": "yarn workspace @tutimbeta/headless build && yarn workspace @tutimbeta/fields build && yarn workspace @tutimbeta/types build",
+    "storybook": "yarn workspace @tutimbeta/fields storybook",
+    "pkg:patch": "yarn workspace @tutimbeta/types version --patch --no-git-tag-version && yarn workspace @tutimbeta/headless version --patch --no-git-tag-version && yarn workspace @tutimbeta/fields version --patch --no-git-tag-version && yarn version --patch  --no-git-tag-version",
+    "pkg:tag": "git add . && git commit -m v${npm_package_version} && git push && git tag v${npm_package_version} && git push --tags",
+    "pkg:deploy": "yarn workspace @tutimbeta/types pkg && yarn workspace @tutimbeta/headless pkg && yarn workspace @tutimbeta/fields pkg",
+    "pkg": "yarn pkg:patch && yarn pkg:tag"
+  },
+  "keywords": [
+    "form",
+    "form-builder",
+    "form-infrastructure",
+    "tutim",
+    "headless-forms",
+    "hook-form",
+    "react"
+  ]
+}
