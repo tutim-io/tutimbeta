@@ -1,6 +1,6 @@
 # 🍓 README
 
-<a href="https://tutim.io"><img src=".gitbook/assets/logo-png.png" alt="Tutim.io logo" width="400"></a>
+<a href="https://tutim.io"><img src="https://res.cloudinary.com/tutim/image/upload/v1671445328/logo-png_rjs63o.png" alt="Tutim.io logo" width="400"></a>
 
 ## **Form infrastructure for product teams**
 
