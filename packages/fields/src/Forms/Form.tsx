@@ -35,7 +35,7 @@ export const FormView = ({ form, onSubmit }: FormViewProps): JSX.Element => {
 };
 
 /**
- * fully managed tutim form.
+ * fully managed TutimForm.
  *
  * @remarks
  * [API](https://docs.tutim.io/) • [Builder](https://tutim.io/)
@@ -54,19 +54,21 @@ export const FormView = ({ form, onSubmit }: FormViewProps): JSX.Element => {
  *   ],
  * };
  *
- * export const SimpleForm = (): JSX.Element => {
+ * export const TutimForm = (): JSX.Element => {
  *   return <Form onSubmit={console.log} config={config} />;
  * };
  *
- * export const ExampleApp = (): JSX.Element => {
+ * const App = (): JSX.Element => {
  *   return (
  *     <div className="App">
  *       <FormProvider fieldComponents={defaultFields}>
- *         <SimpleForm />
+ *         <TutimForm />
  *       </FormProvider>
  *     </div>
  *   );
  * };
+ *
+ * export default App;
  * ```
  */
 export const Form = ({ config, onSubmit, initialValues }: FormProps): JSX.Element => {
