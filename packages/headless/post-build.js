@@ -6,7 +6,7 @@ const pkgPath = "package.json";
 fs.readFile(pkgPath, 'utf-8').then(async (f) => {
   const json = JSON.parse(f);
   const pkgJson = {
-    ...json, devDependencies: undefined,
+    ...json, dependencies: undefined, devDependencies: undefined,
     scripts: undefined, main: undefined, module: undefined,
     files: undefined, types: undefined,
   }

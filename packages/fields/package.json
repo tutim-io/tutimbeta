@@ -24,8 +24,6 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.13",
-    "@tutimbeta/headless": "*",
-    "@tutimbeta/types": "*",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.39.1",
@@ -55,7 +53,9 @@
   },
   "peerDependencies": {
     "react": "^16.8.0 || 17.x || 18.x",
-    "react-dom": "^16.8.0 || 17.x || 18.x"
+    "react-dom": "^16.8.0 || 17.x || 18.x",
+    "@tutimbeta/headless": "*",
+    "@tutimbeta/types": "*"
   },
   "main": "./src/index.ts",
   "module": "./src/index.ts"
