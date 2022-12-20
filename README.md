@@ -50,30 +50,32 @@ npm install @tutimbeta/headless @tutimbeta/fields
 3\. Render the form:
 
 ```jsx
-import { FormProvider } from "@tutimbeta/headless";
 import { Form, defaultFields } from "@tutimbeta/fields";
+import { FormProvider } from "@tutimbeta/headless";
 
 const config = {
-  // Use https://builder.tutim.io/ to create and manage rich schemas with no-code
+  // Use https://tutim.io to create and manage rich schemas with no-code
   fields: [
     { key: "firstName", label: "First Name", inputType: "text" },
     { key: "lastName", label: "Last Name", inputType: "text" },
   ],
 };
 
-export const SimpleForm = () => {
+const TutimForm = () => {
   return <Form onSubmit={console.log} config={config} />;
 };
 
-export const ExampleApp = () => {
+const App = () => {
   return (
     <div className="App">
       <FormProvider fieldComponents={defaultFields}>
-        <SimpleForm />
+        <TutimForm />
       </FormProvider>
     </div>
   );
 };
+
+export default App;
 ```
 
 ### ⭐ Example
@@ -105,56 +107,65 @@ Save this JSON file as 'signup-schema.json' (built by [Tutim form builder](https
 }
 ```
 
-Render and make customizations with React, like using your own design system
+`Form` is a component that provides a simple interface for defining the fields and form behavior, while handling the infrastructure and user interface for you.
 
 ```jsx
 import { FormProvider } from "@tutimbeta/headless";
 import { Form, defaultFields } from "@tutimbeta/fields";
 import signupSchema from "./signup-schema.json";
 
-export const SimpleForm = () => {
+const TutimForm = () => {
   return <Form onSubmit={console.log} config={signupSchema} />;
 };
 
-export const ExampleApp = () => {
+const App = () => {
   return (
     <div className="App">
       <FormProvider fieldComponents={defaultFields}>
-        <SimpleForm />
+        <TutimForm />
       </FormProvider>
     </div>
   );
 };
+
+export default App;
 ```
 
-Use `useForm` Hook to control forms, all 'react-hook-forms' methods are supported and much more. `FormView` for the UI (based on MUI)
+`ControlledForm` is a component with control over the form logic, while leaving the form infrastructure and user interface to be handled for you. It provides a set of tools for managing the form data and form submission, and a `FormView` component for rendering the form fields and submission button.
 
 ```jsx
-import { useForm } from "@tutimbeta/headless";
-import { FormView } from "@tutimbeta/fields";
-import signupSchema from "./signup-schema.json";
+import { Form, defaultFields } from "@tutim/fields";
+import { FormProvider } from "@tutim/headless";
 
-export const ControlledForm = (): JSX.Element => {
-  const form = useForm(config);
-  return <FormView onSubmit={console.log} form={form} />;
+const config = {
+  fields: [
+    { key: "firstName", label: "First Name", inputType: "text" },
+    { key: "lastName", label: "Last Name", inputType: "text" },
+  ],
 };
-```
 
-We also support headless lean solution, bring your own input (we only handle form logic, UI is up to you for maximum flexability)
+const TutimForm = () => {
+  return <Form onSubmit={console.log} config={config} />;
+};
 
-```jsx
-import { useForm } from "@tutimbeta/headless";
-import { Field } from "@tutimbeta/types";
-
-export const CustomField: Field = ({ inputProps }) => {
-  const { value, onChange } = inputProps;
-  const onClick = () => onChange(value + 2);
+const App = () => {
   return (
-    <button type="button" onClick={onClick}>
-      Click Me: {value}
-    </button>
+    <div className="App">
+      <FormProvider fieldComponents={defaultFields}>
+        <TutimForm />
+      </FormProvider>
+    </div>
   );
 };
+
+export default App;
+```
+
+`HeadlessForm` is a component with complete control over the form logic and design. It provides a set of tools for managing the form infrastructure, such as handling form submissions and managing the form data, while leaving the form logic and design up to you.
+
+```jsx
+import { FormProvider, useForm } from "@tutim/headless";
+import { Field, FieldComponents, InputType } from "@tutim/types";
 
 const config = {
   fields: [
@@ -165,69 +176,57 @@ const config = {
       defaultValue: "first",
     },
     { key: "lastName", label: "Last Name", inputType: "text" },
-    {
-      key: "clicker",
-      label: "Click Me",
-      inputType: "custom",
-      defaultValue: 0,
-      Field: CustomField,
-    },
   ],
 };
 
-export const HeadlessForm = (): JSX.Element => {
+const HeadlessForm = () => {
   const { fieldsByKey, watch, handleSubmit } = useForm(config);
   const name = watch("firstName");
 
   return (
-    <form onSubmit={handleSubmit(console.log)}>
+    <form
+      onSubmit={handleSubmit(console.log)}
+      style={{ display: "flex", flexDirection: "column", gap: "5px" }}
+    >
       {fieldsByKey["firstName"]}
       {name === "first" && fieldsByKey["lastName"]}
-      {fieldsByKey["clicker"]}
       <input type="submit" />
     </form>
   );
 };
-```
 
-Use `FormProvider` to manage all your `fieldComponents`. can use our default fields or use your own
-
-```jsx
-import { FormProvider } from "@tutimbeta/headless";
-import { defaultFields } from "@tutimbeta/fields";
-import { FieldComponents, InputType } from "@tutimbeta/types";
-import { SimpleForm } from "./SimpleForm";
-import { CustomField } from "./CustomField";
-
-const fieldComponents: FieldComponents = {
-  ...defaultFields, // optional built in input fields based on MUI
+const fieldComponents = {
   [InputType.Text]: ({ inputProps }) => <input {...inputProps} />,
-  "custom-field": (fieldProps) => <CustomField {...fieldProps} />,
-  // add any type of input and reference it by 'inputType'
 };
 
-export const App = (): JSX.Element => {
+const App = () => {
   return (
     <div className="App">
       <FormProvider fieldComponents={fieldComponents}>
-        <SimpleForm />
+        <HeadlessForm />
       </FormProvider>
     </div>
   );
 };
+
+export default App;
 ```
 
 BYOF - Bring Your Own Field. Use `Field` type to register any type of field. Can be used on `FormProvider` level for global inputs or withing `FieldConfig` for local use cases
 
-```jsx
-import { Field, FieldConfig } from "@tutimbeta/types";
+`CustomField` is a component that allows you to define custom form fields that can be used in your react application. You can use it to render any type of form field that you want, based on the `inputType` specified in the field configuration.
 
-export const CustomField: Field = ({ inputProps }) => {
+`CustomField` can be used either globally, by specifying it in the `fieldComponents` object passed to the `FormProvider` component, or locally, by specifying the `Field` prop in the field configuration when creating a form.
+
+```tsx
+import { Field, FieldConfig } from "@tutim/types";
+
+export const CustomField: Field = ({ inputProps, fieldConfig }) => {
   const { value, onChange } = inputProps;
   const onClick = () => onChange(value + 2);
   return (
     <button type="button" onClick={onClick}>
-      Click Me: {value}
+      {fieldConfig.label}: {value}
     </button>
   );
 };
@@ -239,6 +238,43 @@ export const customFieldConfig: FieldConfig = {
   defaultValue: 0,
   Field: CustomField,
 };
+```
+
+`FormProvider` is a component that allows you to define the form fields that you want to use in your react application. It provides a way to specify the field components that will be used to render the form fields, and allows you to use either the default field components provided by the `@tutim/fields` library, or your own custom field components.
+
+```tsx
+import { FormProvider } from "@tutimbeta/headless";
+import { defaultFields, Form } from "@tutimbeta/fields";
+import { Field, FieldComponents, InputType } from "@tutimbeta/types";
+
+export const CustomField: Field = ({ inputProps, fieldConfig }) => {
+  const { value, onChange } = inputProps;
+  const onClick = () => onChange(value + 2);
+  return (
+    <button type="button" onClick={onClick}>
+      {fieldConfig.label}: {value}
+    </button>
+  );
+};
+
+const fieldComponents: FieldComponents = {
+  ...defaultFields, // optional built in input fields based on MUI
+  [InputType.Text]: ({ inputProps }) => <input {...inputProps} />,
+  "custom-field": (fieldProps) => <CustomField {...fieldProps} />,
+  // add any type of input and reference it by 'inputType'
+};
+
+const App = (): JSX.Element => {
+  return (
+    <div className="App">
+      <FormProvider fieldComponents={fieldComponents}>
+        <Form onSubmit={console.log} config={{ fields: [{ key: "field1" }] }} />
+      </FormProvider>
+    </div>
+  );
+};
+
+export default App;
 ```
 
 ### 📜 Forms
@@ -262,7 +298,7 @@ Tutim provides all forms solutions. Through code or drag & drop interface.
 **😊 Portal**
 
 - [x] Simple form builder
-- [ ] Drag & Drop form builder 
+- [ ] Drag & Drop form builder
 - [ ] Templates library
 - [ ] Conditional branching
 
