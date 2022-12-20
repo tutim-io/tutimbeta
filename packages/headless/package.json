@@ -1,6 +1,6 @@
 {
   "name": "@tutimbeta/headless",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "form infrastructure for web applications",
   "author": "Tutim <eylon@tutim.io>",
   "homepage": "https://tutim.io",
@@ -39,9 +39,9 @@
     "vite-plugin-dts": "^1.7.1"
   },
   "peerDependencies": {
+    "@tutimbeta/types": "*",
     "react": "^16.8.0 || 17.x || 18.x",
-    "react-dom": "^16.8.0 || 17.x || 18.x",
-    "@tutimbeta/types": "*"
+    "react-dom": "^16.8.0 || 17.x || 18.x"
   },
   "main": "./src/index.ts",
   "module": "./src/index.ts"
