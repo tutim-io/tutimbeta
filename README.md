@@ -38,11 +38,11 @@ Create your first form in 2 minutes, by following these steps:
 1\. Install tutim React package:
 
 ```bash
-yarn add @tutimbeta/headless @tutimbeta/fields
+yarn add @tutimbeta/headless @tutimbeta/fields @tutimbeta/types
 ```
 
 ```bash
-npm install @tutimbeta/headless @tutimbeta/fields
+npm install @tutimbeta/headless @tutimbeta/fields @tutimbeta/types
 ```
 
 2\. Create your first form schema with [Tutim Form Builder](https://builder.tutim.io/), or by creating the form JSON schema yourself
